@@ -2,7 +2,7 @@
 # Creation date: 2020-11-09
 # Version 1: creates the object with some pre-defined charateristics
 class PvModule:
-    def __init__(self, id : int):
+    def __init__(self, id : int = 0 ):
         self.panel_id = id
 
         # PV panel specification attributes
@@ -37,3 +37,14 @@ class PvModule:
 
     def __str__(self):
         return f"{self.panel_id=}"
+
+    def make_string( self, string_id : int ) -> range:
+        # Add a string of 940 pv_arrays onto a pv_array...
+        #self.id = (string_id * 940) # Each string will be made of 940 panels numbered consecutively
+        pv_string : list = []
+        #print( f"{pv_string[0].id=}", f"{self.id=}" )
+        numbers : range = range( (string_id*940), (string_id*940)+940 )
+        # print( f"{type(numbers)=}" )
+        for number in numbers:
+            pv_string.append( PvModule( id = number ) )
+        return pv_string
