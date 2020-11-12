@@ -17,11 +17,11 @@ class pyrometer:
 
         self.dp = self.data['outputs']['daily_profile']
 
-    def dp_now( self ):
-        # the dp dict contains the Daildata for the current month. 
-        # Return the daily_profile element for the current hour.
-        now = datetime.datetime.now()
-        hour = now.strftime("%H") # Hour 00-23
+    def dp_hour( self, hour = datetime.datetime.now().strftime("%H") ):
+        # the dp dict contains the Dailydata for the current month. 
+        # Return the daily_profile element for the specified hour (default to current hour).
+        #now = datetime.datetime.now()
+        #hour = now.strftime("%H") # Hour 00-23
 
         # NB: Gcs(i) = Global clear-sky irradiance on a fixed plane in W/m2
         # NB: T2m = 2-m air temperature in ºC
@@ -30,8 +30,9 @@ class pyrometer:
         return self.dp[ int( hour ) ]
 
     def __str__(self):
-        return str( self.dp_now() )
+        return str( self.dp_hour() )
 
 # Test code
 # p = pyrometer()
 # print( p )
+# print( p.dp_hour(12) )
